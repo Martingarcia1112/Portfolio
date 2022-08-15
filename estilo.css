@@ -1,0 +1,89 @@
+body{
+    background-color: #080706;
+}
+h1{
+    font-family: 'Gloria Hallelujah', cursive;
+    color: #d1b280;
+    font-size: 175px;
+    text-align: right;
+    position: relative;
+    top: 190px;
+    left: -100px;
+}
+h2{
+    text-align: center;
+    padding: 30px;
+    bottom: 40px;
+    margin-top: 60px;
+}
+#inicio{
+    font-family: 'Gloria Hallelujah', cursive;
+    font-size: 30px;
+    width: 250px;
+}
+
+#portfolio{
+    background-color: #efefef;
+    text-align: center;
+    padding: 20px;
+}
+#proyectos{
+    width: auto;
+    margin: auto;
+}
+img{
+    padding: 10px;
+}
+.card-body{
+    padding: 10px;
+}
+#acerca{
+    text-align: center;
+    background-color: #d1b280;
+    height: 300px;
+}
+
+#habilidades{
+    background-color: #efefef;
+}
+#contacto{
+    background-color: #594d46;
+    padding: 15px;
+}
+.nav-link{
+    font-size: 20px;
+    color: #080706;
+    width: 150px;
+}
+.borde_barra{
+    border: 2px solid #080706;
+}
+#copy{
+    background-color: #efefef;
+    text-align: center;
+    padding: 30px;
+}
+#redes{
+    text-align: center;
+    padding: 20px;
+    background-color: #d1b280;
+}
+#div_inicial{
+    height: 300px;
+    width: 100%;
+}
+#img_fondo{
+    width: 40%;
+    height: 100%;
+    position: fixed;
+    z-index: -1;
+    top: 50px;
+    left: 5px;
+}
+
+
+
+/* COLORES
+#080706
+#d1b280
+#594d46 */
