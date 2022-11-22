@@ -1,12 +1,76 @@
 <template>
-  <v-main id="app">
+  <div class="container-center">
+    <div class="card">
+      <input
+      @change="toggleTheme"
+      id="checkbox"
+      class="switch-checkbox"
+      type="checkbox"
+      />
+      <label for="checkbox" class="switch-label">
+        <span>🌙</span>
+        <span>☀️</span>
+        <div
+        class="switch-toggle"
+        :class="{ 'switch-toggle-checked': userTheme === 'dark-theme'}"
+        ></div>
+      </label>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad odio dolor voluptate deleniti, quam et aut rerum minus eligendi commodi ducimus iusto tempore suscipit voluptatem laborum qui excepturi necessitatibus sit?</p>
+    </div>
+  </div>
+  <!-- <v-main id="app">
     <NavBar/>
     <HelloWorld msg="Bienvenidos a mi Portfolio"/>
     <HelloWorld msg="Martin Joel Garcia"/>
-  </v-main>
+  </v-main> -->
 </template>
 
 <script>
+
+export default {
+  name: 'App',
+  mounted() {
+    const initUserTheme = this.getMediaPreference();
+    this.setTheme(initUserTheme);
+  },
+
+  data() {
+    return {
+      userTheme: "light-theme",
+    };
+  },
+  methods: {
+  setTheme(theme) {
+    localStorage.setItem("user-theme", theme);
+    this.userTheme = theme;
+    document.documentElement.className = theme;
+  },
+  toggleTheme() {
+  const activeTheme = localStorage.getItem("user-theme");
+  if (activeTheme === "light-theme") {
+    this.setTheme("dark-theme");
+  } else {
+    this.setTheme("light-theme");
+  }
+},
+getMediaPreference() {
+  const hasDarkPreference = window.matchMedia(
+    "(prefers-color-scheme: dark)"
+  ).matches;
+  if (hasDarkPreference) {
+    return "dark-theme";
+  } else {
+    return "light-theme";
+  }
+},
+getTheme() {
+  return localStorage.getItem("user-theme");
+},
+}
+};
+</script>
+
+<!-- <script>
 import HelloWorld from './components/HelloWorld.vue'
 import NavBar from './components/NavBar/NavBar.vue';
 
@@ -17,9 +81,9 @@ export default {
     NavBar
   }
 }
-</script>
+</script> -->
 
-<style>
+<!-- <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -27,5 +91,85 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+</style> -->
+
+<style>
+html, body {
+  padding: 0;
+  margin: 0;
+}
+/* Define styles for the default root window element */
+:root {
+  --background-color-primary: #ebebeb;
+  --background-color-secondary: #fafafa;
+  --accent-color: #cacaca;
+  --text-primary-color: #222;
+  --element-size: 4rem;
+}
+
+/* Define styles for the root window with dark - mode preference */
+:root.dark-theme {
+  --background-color-primary: #1e1e1e;
+  --background-color-secondary: #2d2d30;
+  --accent-color: #3f3f3f;
+  --text-primary-color: #ddd;
+}
+
+p {
+  color: var(--text-primary-color);
+}
+
+.container-center {
+  background-color: var(--background-color-primary);
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card {
+  padding: 2rem 4rem;
+  height: 200px;
+  width: 300px;
+  text-align: center;
+  border: 1px solid var(--accent-color);
+  border-radius: 4px;
+  background-color: var(--background-color-secondary);
+}
+
+.switch-checkbox {
+  display: none;
+}
+:root {
+  --background-color-primary: #ebebeb;
+  --background-color-secondary: #fafafa;
+  --accent-color: #cacaca;
+  --text-primary-color: #222;
+  --element-size: 4rem; /* <- this is the base size of our element */
+}
+.switch-label {
+  /* for width, use the standard element-size */
+  width: var(--element-size); 
+
+  /* for other dimensions, calculate values based on it */
+  border-radius: var(--element-size);
+  border: calc(var(--element-size) * 0.025) solid var(--accent-color);
+  padding: calc(var(--element-size) * 0.1);
+  font-size: calc(var(--element-size) * 0.3);
+  height: calc(var(--element-size) * 0.35);
+
+  align-items: center;
+  background: var(--text-primary-color);
+  cursor: pointer;
+  display: flex;
+  position: relative;
+  transition: background 0.5s ease;
+  justify-content: space-between;
+  z-index: 1;
+} 
+.switch-toggle-checked {
+  transform: translateX(calc(var(--element-size) * 0.6)) !important;
 }
 </style>
